@@ -1,7 +1,7 @@
 ZASComplaintManagementSystem
 Overview
 
-This project is a web-based system for managing customer complaints. It allows users to create account and submit complaints.
+This project is a backend web-based system for managing customer complaints. It allows users to create account and submit complaints.
 
 Features
     User authentication and authorization
@@ -16,7 +16,7 @@ Technical Details
 
 Installation
 
-    Clone the repository: git clone https://github.com/username/complaints-management-system.git
+    Clone the repository: git clone https://github.com/ZaeemAftabSiddiqui/BackendZASComplaintManagementSystem
     Install dependencies: npm install
     Start the server: npm start
     Access the system in your browser at http://localhost:3000
