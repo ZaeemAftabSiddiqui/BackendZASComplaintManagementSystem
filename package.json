@@ -13,6 +13,7 @@
   "author": "ZAEEM AFTAB SIDDIQUI",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.9.1"
   }
 }
