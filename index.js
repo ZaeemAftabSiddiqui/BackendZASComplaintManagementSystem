@@ -2,10 +2,16 @@ const express = require("express");
 const app = express();
 const port = 5000;
 
+const middileware = (req, res, next) => {
+  console.log("middle ware");
+  next();
+};
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.get("/about", (req, res) => {
+app.get("/about", middileware, (req, res) => {
+  console.log("about page");
   res.send("About page");
 });
 app.get("/contact", (req, res) => {
