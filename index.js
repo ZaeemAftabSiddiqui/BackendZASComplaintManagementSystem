@@ -1,6 +1,10 @@
+const connectToMongo = require("./db");
 const express = require("express");
 const app = express();
 const port = 5000;
+connectToMongo();
+
+// Middleware
 
 const middileware = (req, res, next) => {
   console.log("middle ware");
@@ -25,5 +29,5 @@ app.get("/signup", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`my app listening on port http://localhost:${port}`);
 });
