@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const DB =
-  "mongodb+srv://zaeemaftabsiddiqui:t9KrNwVKipdMLLsX@cluster0.pbgnpey.mongodb.net/Complait-system?retryWrites=true&w=majority";
+const DB = process.env.MONGO_URL;
 
 const connectToMongo = () => {
   mongoose.set("strictQuery", true);
