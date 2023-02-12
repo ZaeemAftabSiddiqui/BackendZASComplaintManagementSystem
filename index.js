@@ -2,8 +2,13 @@ require("dotenv").config();
 const express = require("express");
 const connectToMongo = require("./db");
 const app = express();
-connectToMongo();
 
+// for all json data convert into object and show
+app.use(express.json());
+// I link routes files to make our routes easy
+app.use(require("./routes/auth"));
+
+connectToMongo();
 // Middleware
 const middileware = (req, res, next) => {
   console.log("middle ware");
@@ -11,9 +16,9 @@ const middileware = (req, res, next) => {
 };
 const port = process.env.PORT;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!");
+// });
 app.get("/about", middileware, (req, res) => {
   console.log("about page");
   res.send("About page");
