@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const connectToMongo = require("../db");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
 router.get("/", (req, res) => {
   res.send("hello");
@@ -37,11 +38,16 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Plz fill data" });
     }
     const userLogin = await User.findOne({ email });
-    console.log(userLogin);
-    if (!userLogin) {
-      res.status(400).json({ error: "user error" });
+    // console.log(userLogin);
+    if (userLogin) {
+      const isMatch = await bcrypt.compare(password, userLogin.password);
+      if (!isMatch) {
+        res.status(400).json({ error: "Invalid Credentials pass" });
+      } else {
+        res.json({ message: "user Sign in successfully" });
+      }
     } else {
-      res.json({ message: "user Sign in successfully" });
+      res.status(400).json({ error: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
