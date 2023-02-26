@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const connectToMongo = require("../db");
@@ -33,6 +34,7 @@ router.post("/register", async (req, res) => {
 //Login route
 router.post("/signin", async (req, res) => {
   try {
+    let token;
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: "Plz fill data" });
@@ -41,6 +43,8 @@ router.post("/signin", async (req, res) => {
     // console.log(userLogin);
     if (userLogin) {
       const isMatch = await bcrypt.compare(password, userLogin.password);
+      token = await userLogin.generateAuthToken();
+      console.log(token);
       if (!isMatch) {
         res.status(400).json({ error: "Invalid Credentials pass" });
       } else {
